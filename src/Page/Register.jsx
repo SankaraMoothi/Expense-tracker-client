@@ -49,6 +49,7 @@ const Register = () => {
           }}
           type="text"
           placeholder="username"
+          required
         />
         <input
           value={email}
@@ -57,6 +58,7 @@ const Register = () => {
           }}
           type="email"
           placeholder="userEmail"
+          required
         />
         <input
           value={password}
@@ -65,6 +67,7 @@ const Register = () => {
           }}
           type="password"
           placeholder="password"
+          required
         />
         <input
           value={Conpass}
@@ -73,6 +76,7 @@ const Register = () => {
           }}
           type="password"
           placeholder="canform password"
+          required
         />
         <button type="submit">Register</button>
       </form>
