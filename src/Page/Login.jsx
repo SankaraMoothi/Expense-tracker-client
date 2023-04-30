@@ -13,7 +13,10 @@ const Login = () => {
       password,
     };
     try {
-      const res = await axios.post("http://localhost:4000/user/login", data);
+      const res = await axios.post(
+        "https://expense-tracker-backend-three.vercel.app/user/login",
+        data
+      );
 
       localStorage.setItem("token", res.data.token);
       localStorage.setItem("username", res.data.username);
@@ -21,7 +24,6 @@ const Login = () => {
     } catch (error) {
       console.log(error);
     }
-    console.log(data);
   };
   return (
     <>

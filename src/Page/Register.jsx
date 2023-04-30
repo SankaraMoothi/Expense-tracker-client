@@ -1,19 +1,39 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const Register = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [Conpass, setConpass] = useState("");
-  const handleRegister = (e) => {
+  const navigate = useNavigate();
+  const handleRegister = async (e) => {
     e.preventDefault();
     if (password === Conpass) {
       const data = {
-        name,
+        username: name,
         email,
         password,
       };
-      console.log(data);
+      if (data == null || data === undefined) {
+        navigate("/login");
+      } else {
+        await fetch(
+          "https://expense-tracker-backend-three.vercel.app/user/register",
+          {
+            method: "POST",
+            body: JSON.stringify(data),
+            headers: {
+              "Content-Type": "application/json",
+              accept: "application/json",
+            },
+          }
+        )
+          .then((response) => response.json())
+          .then((data) => {
+            navigate("/login");
+          });
+      }
     } else {
       alert("Something Want Worng...");
     }

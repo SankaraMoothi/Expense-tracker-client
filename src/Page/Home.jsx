@@ -24,10 +24,11 @@ const Home = () => {
       if (data == null || data === undefined) {
         navigate("/login");
       } else {
-        fetch("http://localhost:4000/user/", {
+        fetch("https://expense-tracker-backend-three.vercel.app/user/expense", {
           method: "GET",
           headers: {
             "x-auth-token": `${data.token}`,
+            "Access-Control-Allow-Origin": "*",
             username: `${data.username}`,
           },
         })
@@ -58,20 +59,21 @@ const Home = () => {
     if (data == null || data === undefined) {
       navigate("/login");
     } else {
-      console.log(data);
-      await fetch("http://localhost:4000/user/create", {
-        method: "POST",
-        body: JSON.stringify(data),
-        headers: {
-          "x-auth-token": `${token}`,
-          username: `${username}`,
-          "Content-Type": "application/json",
-          accept: "application/json",
-        },
-      })
+      await fetch(
+        "https://expense-tracker-backend-three.vercel.app/user/create",
+        {
+          method: "POST",
+          body: JSON.stringify(data),
+          headers: {
+            "x-auth-token": `${token}`,
+            username: `${username}`,
+            "Content-Type": "application/json",
+            accept: "application/json",
+          },
+        }
+      )
         .then((response) => response.json())
         .then((data) => {
-          console.log(data);
           checkUser();
         });
     }
